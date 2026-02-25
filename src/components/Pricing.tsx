@@ -2,7 +2,19 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import authorImg from "../assets/mnv.jpg";
 
-const plans = {
+interface PlanDetails {
+    title: string;
+    price: string;
+    unit: string;
+    description: string;
+    features: string[];
+}
+
+interface Plans {
+    [key: string]: PlanDetails;
+}
+
+const plans: Plans = {
     monthly: {
         title: "Design Retainer",
         price: "$1,000",
@@ -32,12 +44,12 @@ const plans = {
 };
 
 const Pricing = () => {
-    const [plan, setPlan] = useState("monthly");
+    const [plan, setPlan] = useState<keyof typeof plans>("monthly");
     const currentPlan = plans[plan];
 
     return (
-        <section className="w-full max-w-[95vw] mx-auto px-6 py-24">
-            <div className="overflow-hidden text-center mb-[-1vw] md:mb-[-1vw]">
+        <section className="w-full max-w-[1400px] mx-auto px-6 py-24">
+            <div className="overflow-hidden text-center mb-[-1vw]">
                 <motion.h1
                     initial={{ y: "40%" }}
                     whileInView={{ y: 0 }}
@@ -89,35 +101,37 @@ const Pricing = () => {
 
                 <div className="w-full max-w-md flex flex-col gap-6">
                     <div className="flex bg-zinc-100 p-1 rounded-2xl relative">
-                        {["monthly", "custom"].map((option) => (
-                            <button
-                                key={option}
-                                onClick={() => setPlan(option)}
-                                className={`relative flex-1 py-3 text-sm font-bold transition-colors duration-300 z-10 ${
-                                    plan === option
-                                        ? "text-black"
-                                        : "text-zinc-400 hover:text-zinc-600"
-                                }`}
-                            >
-                                {plan === option && (
-                                    <motion.div
-                                        layoutId="activePlan"
-                                        className="absolute inset-0 bg-white shadow-sm rounded-xl"
-                                        transition={{
-                                            type: "spring",
-                                            bounce: 0.2,
-                                            duration: 0.6,
-                                        }}
-                                    />
-                                )}
-                                <span className="relative z-20 capitalize">
-                                    {option}
-                                </span>
-                            </button>
-                        ))}
+                        {(Object.keys(plans) as Array<keyof typeof plans>).map(
+                            (option) => (
+                                <button
+                                    key={option}
+                                    onClick={() => setPlan(option)}
+                                    className={`relative flex-1 py-3 text-sm font-bold transition-colors duration-300 z-10 ${
+                                        plan === option
+                                            ? "text-black"
+                                            : "text-zinc-400 hover:text-zinc-600"
+                                    }`}
+                                >
+                                    {plan === option && (
+                                        <motion.div
+                                            layoutId="activePlan"
+                                            className="absolute inset-0 bg-white shadow-sm rounded-xl"
+                                            transition={{
+                                                type: "spring",
+                                                bounce: 0.2,
+                                                duration: 0.6,
+                                            }}
+                                        />
+                                    )}
+                                    <span className="relative z-20 capitalize">
+                                        {option}
+                                    </span>
+                                </button>
+                            ),
+                        )}
                     </div>
 
-                    <div className="bg-[#1a1a1a]/90 text-white rounded-[1rem] p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/5 relative overflow-hidden">
+                    <div className="bg-[#1a1a1a] text-white rounded-[2rem] p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/5 relative overflow-hidden">
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 blur-[80px] rounded-full" />
 
                         <AnimatePresence mode="wait">
@@ -148,9 +162,6 @@ const Pricing = () => {
                                             {currentPlan.unit}
                                         </span>
                                     </div>
-                                    {/*<p className="mt-4 text-white/50 text-sm leading-relaxed">
-                                        {currentPlan.description}
-                                    </p>*/}
                                 </div>
 
                                 <ul className="space-y-5 mb-12">

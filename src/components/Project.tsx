@@ -1,4 +1,4 @@
-import { useScroll, useTransform, motion } from "framer-motion";
+import { useScroll, useTransform, motion, type Variants } from "framer-motion";
 import { useRef } from "react";
 import p1 from "../assets/project-1.jpeg";
 import p2 from "../assets/project-2.webp";
@@ -7,11 +7,15 @@ import p4 from "../assets/project-4.webp";
 import p5 from "../assets/project-5.jpeg";
 import p6 from "../assets/project-6.jpeg";
 
-type BgCardProps = {
-    img: string;
-};
+// type BgCardProps = {
+//     img: string;
+// };
 
-const gridRowVariants = {
+interface IconProps {
+    className?: string;
+}
+
+const gridRowVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -21,7 +25,7 @@ const gridRowVariants = {
     },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
     hidden: {
         opacity: 0,
         y: 40,
@@ -38,7 +42,7 @@ const cardVariants = {
     },
 };
 
-const ArrowIcon = ({ className }) => (
+const ArrowIcon = ({ className }: IconProps) => (
     <svg className={className} fill="currentColor" viewBox="0 0 256 256">
         <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
     </svg>

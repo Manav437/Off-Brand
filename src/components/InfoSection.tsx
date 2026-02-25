@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 const infoContent: string[] = [
     "Design a brand worth remembering",
     "Story-driven web experiences that convert",
-    "Pitch desks for 9-figures raises, literally",
+    "Pitch desks for 9-figure raises, literally",
     "Dedicated product designers",
     "Output focused design sprints",
 ];
 
 const InfoSection = () => {
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -20,7 +21,7 @@ const InfoSection = () => {
         },
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
@@ -115,7 +116,11 @@ const InfoSection = () => {
     );
 };
 
-const ArrowIcon = ({ className }) => (
+interface IconProps {
+    className?: string;
+}
+
+const ArrowIcon = ({ className }: IconProps) => (
     <svg className={className} fill="currentColor" viewBox="0 0 256 256">
         <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
     </svg>

@@ -4,16 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
-    const navRef = useRef(null);
+    const navRef = useRef<HTMLElement>(null);
 
     const toggleDropdown = () => setOpen(!open);
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
+        const handleClickOutside = (event: MouseEvent) => {
             if (
                 open &&
                 navRef.current &&
-                !navRef.current.contains(event.target)
+                !navRef.current.contains(event.target as Node)
             ) {
                 setOpen(false);
             }
@@ -98,7 +98,12 @@ const Navbar = () => {
     );
 };
 
-const MenuIcon = ({ toggle, isOpen }) => (
+interface MenuIconProps {
+    toggle: () => void;
+    isOpen: boolean;
+}
+
+const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
     <button
         onClick={toggle}
         type="button"
