@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import bgImg from "../assets/hero-section-img.jpeg";
 
 const HeroSection = () => {
-    const titleVariant = {
+    const titleVariant: Variants = {
         hidden: { y: "103%" },
         visible: {
             y: 0,
@@ -13,7 +13,7 @@ const HeroSection = () => {
         },
     };
 
-    const containerVariant = {
+    const containerVariant: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
