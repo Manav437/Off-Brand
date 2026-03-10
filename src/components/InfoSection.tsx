@@ -74,19 +74,18 @@ const InfoSection = () => {
                     <div className="flex items-center gap-6 border-t border-gray-100 pt-8 mt-12 md:mt-0">
                         <span className="text-sm uppercase tracking-wider text-black/50">
                             Projects start at <br />
-                            <strong className="text-black text-lg">
-                                $8,000/mo
+                            <strong className="text-black text-lg lowercase">
+                                $1,000/mo
                             </strong>
                         </span>
                         <motion.button
-                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="group flex items-center gap-3 bg-black text-white rounded-full px-6 py-3 transition-transform"
+                            className="group flex items-center gap-3 bg-black text-white rounded-full px-6 py-3 transition-transform ring-2 ring-black/20"
                         >
                             <span className="text-sm font-medium">
                                 View Pricing
                             </span>
-                            <ArrowIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                            <ArrowIcon className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                         </motion.button>
                     </div>
                 </motion.div>

@@ -71,6 +71,7 @@ const FAQ = () => {
                     <div>
                         <img
                             src={CallImg}
+                            alt="Call image"
                             className="h-16 w-16 rounded-full mb-4 ring-2 ring-black/20"
                         />
                         <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight">
@@ -188,7 +189,7 @@ const FAQ = () => {
                                                 ease: [0.04, 0.62, 0.23, 0.98],
                                             }}
                                         >
-                                            <div className="pb-4 pr-12 text-zinc-500 text-md leading-relaxed">
+                                            <div className="pb-4 pr-12 text-zinc-500 text-base leading-relaxed">
                                                 {item.answer}
                                             </div>
                                         </motion.div>

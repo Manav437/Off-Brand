@@ -33,7 +33,7 @@ const HeroSection = () => {
                 style={{ backgroundImage: `url(${bgImg})` }}
             />
 
-            <div className="absolute inset-0 bg-black/40 z-[1]" />
+            <div className="absolute inset-0 bg-black/10 z-[1]" />
 
             <motion.div
                 variants={containerVariant}
@@ -51,7 +51,7 @@ const HeroSection = () => {
                         </motion.h2>
                     </div>
 
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden pb-2">
                         <motion.h2
                             variants={titleVariant}
                             className="font-serif italic text-white/60 text-4xl md:text-6xl lg:text-7xl"

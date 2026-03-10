@@ -48,7 +48,6 @@ const Navbar = () => {
                 <div className="h-6 w-[1px] bg-black/10 mx-1 md:block hidden" />
 
                 <motion.button
-                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="
                         group relative overflow-hidden
