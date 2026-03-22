@@ -1,5 +1,5 @@
 import { motion, type Variants } from "framer-motion";
-import bgImg from "../assets/hero-section-img.png";
+import bgImg from "../assets/hero-section-img.jpg";
 
 const HeroSection = () => {
     const titleVariant: Variants = {
