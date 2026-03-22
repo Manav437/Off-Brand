@@ -45,17 +45,16 @@ const plans: Plans = {
 
 const Pricing = () => {
     const [plan, setPlan] = useState<keyof typeof plans>("monthly");
-    const currentPlan = plans[plan];
 
     return (
         <section className="w-full max-w-[1400px] mx-auto px-6 py-24">
-            <div className="overflow-hidden text-center mb-[-1vw]">
+            <div className="overflow-hidden text-center md:mb-[-1vw]">
                 <motion.h1
                     initial={{ y: "40%" }}
                     whileInView={{ y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                    className="text-[28vw] font-semibold leading-[0.9] text-zinc-800 select-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]"
+                    className="text-[13vw] md:text-[28vw] font-semibold leading-[0.9] text-zinc-800 select-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]"
                 >
                     Pricing
                 </motion.h1>
@@ -106,11 +105,10 @@ const Pricing = () => {
                                 <button
                                     key={option}
                                     onClick={() => setPlan(option)}
-                                    className={`relative flex-1 py-3 text-sm font-bold transition-colors duration-300 z-10 ${
-                                        plan === option
-                                            ? "text-black"
-                                            : "text-zinc-400 hover:text-zinc-600"
-                                    }`}
+                                    className={`relative flex-1 py-3 text-sm font-bold transition-colors duration-300 z-10 ${plan === option
+                                        ? "text-black"
+                                        : "text-zinc-400 hover:text-zinc-600"
+                                        }`}
                                 >
                                     {plan === option && (
                                         <motion.div
@@ -135,70 +133,88 @@ const Pricing = () => {
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 blur-[80px] rounded-full" />
 
                         <AnimatePresence mode="wait">
-                            <motion.div
-                                key={plan}
-                                initial={{ opacity: 0, x: 20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20 }}
-                                transition={{ duration: 0.3 }}
-                                className="relative z-10"
-                            >
-                                <div className="mb-10">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="relative flex size-2">
-                                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
-                                            <span className="relative inline-flex size-2 rounded-full bg-green-400"></span>
-                                        </span>
-                                        <h3 className="text-xs uppercase tracking-[0.2em] text-white/40 font-bold">
-                                            {currentPlan.title}
-                                        </h3>
-                                    </div>
-
-                                    <div className="flex items-baseline gap-1">
-                                        <span className="text-4xl md:text-5xl font-bold tracking-tight">
-                                            {currentPlan.price}
-                                        </span>
-                                        <span className="text-xl text-white/30 font-medium">
-                                            {currentPlan.unit}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <ul className="space-y-5 mb-12">
-                                    {currentPlan.features.map((item, index) => (
-                                        <li
-                                            key={index}
-                                            className="flex items-start gap-4 text-[15px] text-white/70"
-                                        >
-                                            <div className="mt-1 bg-white/20 rounded-full p-1 shrink-0">
-                                                <svg
-                                                    className="w-3 h-3 text-white"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                    strokeWidth={3}
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M5 13l4 4L19 7"
-                                                    />
-                                                </svg>
+                            {Object.entries(plans).map(([planKey, currentPlan]) => (
+                                plan === planKey && (
+                                    <motion.div
+                                        key={planKey}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="relative z-10"
+                                    >
+                                        <div className="mb-10">
+                                            <div className="flex items-center gap-2 mb-3">
+                                                <span className="relative flex size-2">
+                                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
+                                                    <span className="relative inline-flex size-2 rounded-full bg-green-400"></span>
+                                                </span>
+                                                <h3 className="text-xs uppercase tracking-[0.2em] text-white/40 font-bold">
+                                                    {currentPlan.title}
+                                                </h3>
                                             </div>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
 
-                                <div className="space-y-4">
-                                    <button className="w-full bg-white text-black font-bold py-5 rounded-full hover:bg-zinc-200 transition-all active:scale-[0.98]">
-                                        Get Started Now
-                                    </button>
-                                    <p className="text-center text-[11px] text-white/50 uppercase tracking-widest font-bold">
-                                        Limited spots available
-                                    </p>
-                                </div>
-                            </motion.div>
+                                            <div className="flex items-baseline gap-1">
+                                                <span className="text-4xl md:text-5xl font-bold tracking-tight">
+                                                    {currentPlan.price}
+                                                </span>
+                                                <span className="text-xl text-white/30 font-medium">
+                                                    {currentPlan.unit}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <ul className="space-y-5 mb-12">
+                                            {currentPlan.features.map((item, index) => (
+                                                <li
+                                                    key={index}
+                                                    className="flex items-start gap-4 text-[15px] text-white/70"
+                                                >
+                                                    <div className="mt-1 bg-white/20 rounded-full p-1 shrink-0">
+                                                        <svg
+                                                            className="w-3 h-3 text-white"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke="currentColor"
+                                                            strokeWidth={3}
+                                                        >
+                                                            <path
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                d="M5 13l4 4L19 7"
+                                                            />
+                                                        </svg>
+                                                    </div>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+
+                                        <div className="space-y-4">
+                                            <motion.button
+                                                whileTap={{ scale: 0.98 }}
+                                                className="group relative flex items-center justify-center gap-2 w-full bg-white text-black font-bold py-5 rounded-full transition-all duration-300 hover:bg-zinc-100 shadow-[0px_0px_2px_1px_rgba(1,1,1,0.1)_inset]"
+                                            >
+                                                <span>Get Started Now</span>
+                                                <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        width="16"
+                                                        height="16"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 256 256"
+                                                    >
+                                                        <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
+                                                    </svg>
+                                                </div>
+                                            </motion.button>
+                                            <p className="text-center text-[11px] text-white/50 uppercase tracking-widest font-bold">
+                                                Limited spots available
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                )
+                            ))}
                         </AnimatePresence>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ import "./App.css";
 
 function App() {
     return (
-        <div className="relative min-h-screen w-full font-sans antialiased overflow-x-hidden">
+        <div className="relative min-h-screen w-full font-sans antialiased overflow-x-clip">
             <Navbar />
 
             <main>

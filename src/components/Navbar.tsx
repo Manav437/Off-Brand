@@ -50,9 +50,8 @@ const Navbar = () => {
                 <motion.button
                     whileTap={{ scale: 0.98 }}
                     className="
-                        group relative overflow-hidden
-                        flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold
-                        bg-[#1a1a1a] text-white transition-all duration-200
+                        group relative flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-bold
+                        bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75
                         shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]
                     "
                 >
@@ -70,20 +69,17 @@ const Navbar = () => {
                         transition={{ duration: 0.2, ease: "easeOut" }}
                         className="
                             absolute top-full left-0 mt-4 w-full
-                            bg-black/50 backdrop-blur-xl border border-white/40
-                            rounded-[2rem] p-3 shadow-[0_20px_40px_rgba(0,0,0,0.1)]
+                            bg-white border border-zinc-200
+                            rounded-[1.5rem] p-3 shadow-[0_20px_40px_rgba(0,0,0,0.1)]
                             ring-1 ring-black/5 overflow-hidden
                         "
                     >
-                        <ul className="flex flex-col gap-1 text-sm font-semibold text-white">
+                        <ul className="flex flex-col gap-1 text-sm font-bold text-zinc-500">
                             {["About", "Services", "Case Studies"].map(
                                 (item) => (
                                     <motion.li
                                         key={item}
-                                        whileHover={{
-                                            x: 2,
-                                        }}
-                                        className="cursor-pointer rounded-2xl px-5 py-4 transition-colors hover:bg-zinc-600"
+                                        className="cursor-pointer rounded-3xl px-4 py-3 transition-all hover:bg-zinc-100 hover:text-black text-zinc-500"
                                     >
                                         {item}
                                     </motion.li>
@@ -107,6 +103,7 @@ const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
         onClick={toggle}
         type="button"
         aria-label="Toggle menu"
+        aria-expanded={isOpen}
         className="p-2 hover:bg-black/5 rounded-full transition-colors"
     >
         <svg
@@ -124,9 +121,8 @@ const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
                 y1="12"
                 x2="20"
                 y2="12"
-                className={`transition-all duration-300 origin-center ${
-                    isOpen ? "rotate-45" : "-translate-y-[6px]"
-                }`}
+                className={`transition-all duration-300 origin-center ${isOpen ? "rotate-45" : "-translate-y-[6px]"
+                    }`}
             />
 
             <line
@@ -134,9 +130,8 @@ const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
                 y1="12"
                 x2="20"
                 y2="12"
-                className={`transition-all duration-300 ${
-                    isOpen ? "opacity-0" : ""
-                }`}
+                className={`transition-all duration-300 ${isOpen ? "opacity-0" : ""
+                    }`}
             />
 
             <line
@@ -144,24 +139,25 @@ const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
                 y1="12"
                 x2="20"
                 y2="12"
-                className={`transition-all duration-300 origin-center ${
-                    isOpen ? "-rotate-45" : "translate-y-[6px]"
-                }`}
+                className={`transition-all duration-300 origin-center ${isOpen ? "-rotate-45" : "translate-y-[6px]"
+                    }`}
             />
         </svg>
     </button>
 );
 
 const ArrowIcon = () => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
-        fill="currentColor"
-        viewBox="0 0 256 256"
-    >
-        <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
-    </svg>
+    <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            fill="currentColor"
+            viewBox="0 0 256 256"
+        >
+            <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
+        </svg>
+    </div>
 );
 
 export default Navbar;

@@ -21,13 +21,12 @@ const CTA = () => {
                 </div>
 
                 <motion.button
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4, duration: 0.6 }}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="group flex items-center gap-4 bg-[#1a1a1a] text-white rounded-full p-2 pr-8 transition-all duration-300 shadow-xl shadow-black/10 active:bg-black"
+                    whileTap={{ scale: 0.98 }}
+                    className="group relative flex items-center gap-4 bg-[#2c2c2c] text-white rounded-full p-2 pr-8 transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]"
                 >
                     <div className="relative">
                         <img
@@ -47,19 +46,17 @@ const CTA = () => {
                                 Book a call
                             </span>
 
-                            <svg
-                                className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                />
-                            </svg>
+                            <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    viewBox="0 0 256 256"
+                                >
+                                    <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
+                                </svg>
+                            </div>
                         </div>
                         <span className="text-sm text-white/50 font-medium">
                             Let's talk about your project

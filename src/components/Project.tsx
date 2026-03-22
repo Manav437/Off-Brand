@@ -1,5 +1,4 @@
-import { useScroll, useTransform, motion, type Variants } from "framer-motion";
-import { useRef } from "react";
+import { motion, type Variants } from "framer-motion";
 import p1 from "../assets/project-1.jpeg";
 import p2 from "../assets/project-2.webp";
 import p3 from "../assets/project-3.webp";
@@ -110,23 +109,15 @@ const BgCard = ({ img, title }: { img: string; title: string }) => {
 };
 
 const Project = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"],
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-
     return (
-        <section
-            ref={containerRef}
-            className="w-full mx-auto px-6 py-20 relative"
-        >
-            <div className="overflow-hidden mb-[-2rem] md:mb-[-3rem]">
+        <section className="w-full mx-auto px-6 py-20 relative">
+            <div className="overflow-hidden mb-8 md:mb-12">
                 <motion.h1
-                    style={{ y }}
-                    className="text-[15vw] md:text-[26vw] font-semibold leading-[0.9] text-zinc-800 [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] select-none text-center"
+                    initial={{ y: "40%" }}
+                    whileInView={{ y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+                    className="text-[11vw] md:text-[26vw] font-semibold leading-[0.9] text-zinc-800 [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)] select-none text-center"
                 >
                     Projects
                 </motion.h1>

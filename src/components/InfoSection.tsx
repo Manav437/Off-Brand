@@ -79,13 +79,11 @@ const InfoSection = () => {
                             </strong>
                         </span>
                         <motion.button
-                            whileTap={{ scale: 0.95 }}
-                            className="group flex items-center gap-3 bg-black text-white rounded-full px-6 py-3 transition-transform ring-2 ring-black/20"
+                            whileTap={{ scale: 0.98 }}
+                            className="group relative flex items-center justify-center gap-3 px-6 py-3 rounded-full text-sm font-bold bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]"
                         >
-                            <span className="text-sm font-medium">
-                                View Pricing
-                            </span>
-                            <ArrowIcon className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+                            <span>View Pricing</span>
+                            <ArrowIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                         </motion.button>
                     </div>
                 </motion.div>

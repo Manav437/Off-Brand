@@ -1,5 +1,5 @@
 import { motion, type Variants } from "framer-motion";
-import bgImg from "../assets/hero-section-img.jpeg";
+import bgImg from "../assets/hero-section-img.png";
 
 const HeroSection = () => {
     const titleVariant: Variants = {
@@ -26,14 +26,14 @@ const HeroSection = () => {
     return (
         <section className="relative min-h-[85vh] max-w-[calc(100%-14px)] mx-auto mt-3 rounded-[30px] overflow-hidden flex flex-col items-center justify-end pb-16 px-4">
             <motion.div
-                initial={{ scale: 1.1 }}
+                initial={{ scale: 1.05 }}
                 animate={{ scale: 1 }}
-                transition={{ duration: 10, ease: "linear" }}
+                transition={{ duration: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="absolute inset-0 z-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${bgImg})` }}
             />
 
-            <div className="absolute inset-0 bg-black/10 z-[1]" />
+            <div className="absolute inset-0 bg-black/30 z-[1]" />
 
             <motion.div
                 variants={containerVariant}
@@ -67,15 +67,21 @@ const HeroSection = () => {
                     transition={{ delay: 1.2, duration: 0.6 }}
                     className="flex flex-row gap-4 mb-4"
                 >
-                    <button className="group flex items-center justify-center text-white font-semibold bg-[#2c2c2c] px-5 py-3 gap-3 rounded-full transition-all hover:bg-black shadow-[0px_0px_2px_1px_rgba(255,255,255,0.5)_inset]">
-                        Get Started
+                    <motion.button
+                        whileTap={{ scale: 0.98 }}
+                        className="group relative flex items-center justify-center gap-3 px-6 py-3 rounded-full text-base font-bold bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]"
+                    >
+                        <span>Get Started</span>
                         <ArrowIcon />
-                    </button>
+                    </motion.button>
 
-                    <button className="group flex items-center justify-center bg-white text-black font-semibold px-5 py-3 gap-3 rounded-full transition-all hover:bg-zinc-100 shadow-[0px_0px_2px_1px_rgba(1,1,1,0.1)_inset] active:scale-95">
+                    <motion.button
+                        whileTap={{ scale: 0.98 }}
+                        className="group relative flex items-center justify-center gap-3 px-6 py-3 rounded-full text-base font-bold bg-white text-black transition-all duration-300 hover:bg-zinc-100 shadow-[0px_0px_2px_1px_rgba(1,1,1,0.1)_inset]"
+                    >
                         <span>View Pricing</span>
                         <ArrowIcon color="black" />
-                    </button>
+                    </motion.button>
                 </motion.div>
             </motion.div>
         </section>

@@ -82,11 +82,21 @@ const FAQ = () => {
                             help you ship faster.
                         </p>
                         <motion.button
-                            whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="px-8 py-4 rounded-full bg-black text-white font-medium hover:bg-zinc-800 transition-colors mb-12 shadow-lg shadow-black/5"
+                            className="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-bold bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset] mb-12"
                         >
-                            Book a Call
+                            <span>Book a Call</span>
+                            <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    viewBox="0 0 256 256"
+                                >
+                                    <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
+                                </svg>
+                            </div>
                         </motion.button>
                     </div>
                     <div className="flex items-center gap-5 pt-8 border-t border-zinc-100">
