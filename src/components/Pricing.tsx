@@ -47,21 +47,21 @@ const Pricing = () => {
     const [plan, setPlan] = useState<keyof typeof plans>("monthly");
 
     return (
-        <section className="w-full max-w-[1400px] mx-auto px-6 py-24">
-            <div className="overflow-hidden text-center md:mb-[-1vw]">
+        <section className="w-full max-w-[1400px] mx-auto px-6 py-16 md:py-24">
+            <div className="overflow-hidden text-center mb-8 md:mb-[-1vw]">
                 <motion.h1
                     initial={{ y: "40%" }}
                     whileInView={{ y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                    className="text-[13vw] md:text-[28vw] font-semibold leading-[0.9] text-zinc-800 select-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]"
+                    className="text-[16vw] md:text-[28vw] font-semibold leading-[0.9] text-zinc-800 select-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]"
                 >
                     Pricing
                 </motion.h1>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-stretch justify-between gap-16 relative z-10">
-                <div className="max-w-xl flex flex-1 items-stretch flex-col justify-between gap-12">
+            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch justify-between gap-12 lg:gap-16 relative z-10">
+                <div className="w-full max-w-xl mx-auto lg:mx-0 flex flex-1 items-stretch flex-col justify-between gap-10 lg:gap-12">
                     <div className="space-y-4">
                         <span className="text-sm uppercase tracking-[0.2em] text-black/40 font-bold block">
                             The ROI of Quality
@@ -72,7 +72,7 @@ const Pricing = () => {
                     </div>
 
                     <div className="flex flex-col justify-end">
-                        <blockquote className="font-serif text-2xl md:text-3xl text-black/80 italic leading-relaxed border-l-4 border-black/10 pl-8 mb-10">
+                        <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl text-black/80 italic leading-relaxed border-l-4 border-black/10 pl-6 lg:pl-8 mb-8 lg:mb-10">
                             "For us it has been important to find a creative
                             partner like Off Brand — a team we can trust to
                             deliver quality work on time."
@@ -98,7 +98,7 @@ const Pricing = () => {
                     </div>
                 </div>
 
-                <div className="w-full max-w-md flex flex-col gap-6">
+                <div className="w-full max-w-md mx-auto lg:mx-0 flex flex-col gap-6">
                     <div className="flex bg-zinc-100 p-1 rounded-2xl relative">
                         {(Object.keys(plans) as Array<keyof typeof plans>).map(
                             (option) => (
@@ -129,7 +129,7 @@ const Pricing = () => {
                         )}
                     </div>
 
-                    <div className="bg-[#1a1a1a] text-white rounded-[2rem] p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/5 relative overflow-hidden">
+                    <div className="bg-[#2c2c2c] text-white rounded-[2rem] p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/5 relative overflow-hidden w-full">
                         <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 blur-[80px] rounded-full" />
 
                         <AnimatePresence mode="wait">
