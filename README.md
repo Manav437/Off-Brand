@@ -1,6 +1,6 @@
 # Off Brand 
 
-<img width="1920" height="1440" alt="off-brand-ss" src="https://github.com/user-attachments/assets/a9af567e-9145-4723-9c38-f9a2fe4c6eb2" />
+<img width="1920" height="1440" alt="off-brand-ss" src="https://github.com/user-attachments/assets/125a086b-784b-4679-98e2-cb9ec6b193a9" />
 
 ## Getting Started
 
