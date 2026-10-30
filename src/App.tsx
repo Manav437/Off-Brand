@@ -50,7 +50,9 @@ function App() {
                     <Navbar />
                     <main>
                         <HeroSection />
+
                         <Marquee />
+
                         <div className="flex flex-col">
                             <InfoSection />
                             <Project />
@@ -59,6 +61,7 @@ function App() {
                             <FAQ />
                             <CTA />
                         </div>
+
                     </main>
                     <Footer />
                 </motion.div>

@@ -1,65 +1,52 @@
 import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
 
 const infoContent: string[] = [
     "Design a brand worth remembering",
     "Story-driven web experiences that convert",
-    "Pitch desks for 9-figure raises, literally",
-    "Dedicated product designers",
-    "Output focused design sprints",
+    "Pitch decks for 9-figure raises, literally",
+    "Dedicated senior product designers",
+    "Output-focused design sprints",
 ];
 
 const InfoSection = () => {
-    const containerVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.3,
-            },
-        },
-    };
-
-    const itemVariants: Variants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5, ease: "easeOut" },
-        },
+    const handleScrollTo = (id: string) => {
+        const element = document.querySelector(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
-        <section className="mx-auto max-w-full md:mx-4 px-6 py-20 flex flex-col gap-16 md:gap-24 overflow-hidden">
+        <section
+            id="about"
+            className="w-full max-w-[1400px] mx-auto px-6 py-20 md:py-28 flex flex-col gap-14 md:gap-20"
+        >
             <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] }}
-                className="max-w-6xl"
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="w-full"
             >
-                <h1 className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tight">
+                <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.12] tracking-tight text-zinc-950">
                     <span>
-                        Design dream team for founders obsessed with shipping
-                        fast.
+                        Design dream team for founders obsessed with shipping fast.
                     </span>
-                    <span className="text-gray-400 ml-3">
-                        Our clients have raised over $600M+ in the last 18
-                        months alone.
+                    <span className="text-zinc-400 ml-2 font-normal">
+                        Our clients have raised over $600M+ in the last 18 months alone.
                     </span>
-                </h1>
+                </h2>
             </motion.div>
 
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 items-start">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start">
                 <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="flex flex-col justify-between h-full md:sticky md:top-24 pb-4"
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="flex flex-col justify-between gap-8 md:sticky md:top-28 self-start"
                 >
-                    <div className="space-y-6 text-lg md:text-xl text-black/70 leading-relaxed w-full">
+                    <div className="space-y-5 text-base sm:text-lg text-zinc-600 leading-relaxed max-w-lg">
                         <p>
                             Over 18 years grinding alongside founders with a
                             chip on their shoulder and a story that needs
@@ -71,43 +58,39 @@ const InfoSection = () => {
                         </p>
                     </div>
 
-                    <div className="flex items-center gap-6 border-t border-gray-100 pt-8 mt-12 md:mt-0">
-                        <span className="text-sm uppercase tracking-wider text-black/50">
-                            Projects start at <br />
-                            <strong className="text-black text-lg lowercase">
+                    <div className="flex flex-wrap items-center gap-6 border-t border-zinc-100 pt-6">
+                        <div>
+                            <span className="text-xs uppercase tracking-wider text-zinc-400 font-medium block">
+                                Projects start at
+                            </span>
+                            <span className="text-zinc-900 text-xl font-bold">
                                 $1,000/mo
-                            </strong>
-                        </span>
-                        <motion.button
-                            whileTap={{ scale: 0.98 }}
-                            className="group relative flex items-center justify-center gap-3 px-6 py-3 rounded-full text-sm font-bold bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]"
+                            </span>
+                        </div>
+
+                        <button
+                            onClick={() => handleScrollTo("#pricing")}
+                            className="group relative flex items-center justify-center gap-2.5 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold bg-zinc-900 text-white transition-all duration-200 hover:bg-zinc-800 shadow-sm active:scale-95"
                         >
                             <span>View Pricing</span>
-                            <ArrowIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        </motion.button>
+                            <ArrowIcon className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </button>
                     </div>
                 </motion.div>
 
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="flex flex-col divide-y divide-gray-200 border-y border-gray-200"
-                >
+                <div className="flex flex-col divide-y divide-zinc-200 border-y border-zinc-200">
                     {infoContent.map((content, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            variants={itemVariants}
-                            className="group flex items-start gap-4 py-4 px-2 transition-colors hover:bg-gray-50"
+                            className="group flex items-start gap-4 py-4 px-2 transition-colors hover:bg-zinc-50/80"
                         >
-                            <ArrowIcon className="w-5 h-5 mt-1.5 text-black/30 group-hover:text-black transition-colors shrink-0" />
-                            <span className="text-xl md:text-2xl font-medium tracking-tight text-black/80 group-hover:text-black">
+                            <ArrowIcon className="w-4 h-4 mt-1.5 text-zinc-400 group-hover:text-zinc-900 transition-colors shrink-0" />
+                            <span className="text-lg sm:text-xl font-medium tracking-tight text-zinc-700 group-hover:text-zinc-950 transition-colors">
                                 {content}
                             </span>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

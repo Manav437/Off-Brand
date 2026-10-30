@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import CallImg from "../assets/pfpf1.png";
 
 type FaqItemsType = {
@@ -38,73 +37,54 @@ const faqItems: FaqItemsType[] = [
 const FAQ = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-    const listVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2,
-            },
-        },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.5 },
-        },
+    const handleScrollToContact = () => {
+        const element = document.querySelector("#contact");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
     };
 
     return (
-        <section className="w-full py-24 md:py-30 bg-white">
-            <div className="max-w-[1400px] mx-auto px-6 flex flex-col lg:flex-row gap-20 lg:gap-32">
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="flex flex-col justify-between w-full lg:w-[35%] lg:sticky lg:top-32 bg-[#2c2c2c]/10 backdrop-blur-xl border border-white/60 ring-2 ring-black/[0.08] shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] rounded-[2rem] p-8"
-                >
+        <section id="faq" className="w-full py-20 md:py-28 bg-white">
+            <div className="max-w-[1400px] mx-auto px-6 flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
+                <div className="flex flex-col justify-between w-full lg:w-[35%] bg-zinc-50 border border-zinc-200/80 shadow-sm rounded-[2rem] p-8 transition-[height] duration-300">
                     <div>
                         <img
                             src={CallImg}
-                            alt="Call image"
-                            className="h-16 w-16 rounded-full mb-4 ring-2 ring-black/20"
+                            alt="Project Lead"
+                            className="h-14 w-14 rounded-full mb-5 ring-2 ring-zinc-200"
                         />
-                        <h2 className="text-3xl md:text-4xl font-semibold mb-6 tracking-tight">
+                        <h3 className="text-2xl sm:text-3xl font-semibold mb-3 tracking-tight text-zinc-950">
                             Book an intro call
-                        </h2>
-                        <p className="text-gray-500 text-lg mb-8 max-w-sm">
-                            Time to get introduced and explore how Off Brand can
-                            help you ship faster.
+                        </h3>
+                        <p className="text-zinc-500 text-sm sm:text-base mb-8 max-w-sm leading-relaxed">
+                            Time to get introduced and explore how Off Brand can help you ship faster.
                         </p>
-                        <motion.button
-                            whileTap={{ scale: 0.98 }}
-                            className="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-bold bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset] mb-12"
+                        <button
+                            onClick={handleScrollToContact}
+                            className="group relative flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold bg-zinc-900 text-white transition-all duration-200 hover:bg-zinc-800 shadow-sm active:scale-95 mb-8 w-full sm:w-auto"
                         >
                             <span>Book a Call</span>
-                            <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+                            <div className="transition-transform duration-200 group-hover:translate-x-0.5">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
+                                    width="14"
+                                    height="14"
                                     fill="currentColor"
                                     viewBox="0 0 256 256"
                                 >
                                     <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
                                 </svg>
                             </div>
-                        </motion.button>
+                        </button>
                     </div>
-                    <div className="flex items-center gap-5 pt-8 border-t border-zinc-100">
-                        <div className="p-3 bg-zinc-50 rounded-full text-zinc-400">
+
+                    <div className="flex items-center gap-4 pt-6 border-t border-zinc-200/80">
+                        <div className="p-2.5 bg-white border border-zinc-200 rounded-full text-zinc-600 shrink-0">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
+                                width="20"
+                                height="20"
                                 fill="currentColor"
                                 viewBox="0 0 256 256"
                             >
@@ -113,41 +93,32 @@ const FAQ = () => {
                         </div>
 
                         <div>
-                            <p className="text-sm text-gray-400 font-medium uppercase tracking-wider">
+                            <p className="text-xs text-zinc-400 font-semibold uppercase tracking-wider">
                                 Email us directly
                             </p>
                             <a
-                                href="mailto:manav.gussain@gmail.com"
-                                className="font-semibold text-zinc-900 hover:text-zinc-500 transition-colors"
+                                href="mailto:manav.gusain@gmail.com"
+                                className="text-sm font-semibold text-zinc-900 hover:text-zinc-600 transition-colors"
                             >
-                                manav.gussain@gmail.com
+                                manav.gusain@gmail.com
                             </a>
                         </div>
                     </div>
-                </motion.div>
+                </div>
 
                 <div className="w-full lg:w-[65%]">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-4xl md:text-5xl font-semibold leading-tight mb-20"
-                    >
-                        Frequently <br className="hidden md:block" />
-                        <span className="text-gray-300">Asked Questions</span>
-                    </motion.h2>
+                    <div className="mb-10">
+                        {/*<span className="text-xs uppercase tracking-[0.2em] text-zinc-400 font-bold block mb-2">
+                            Got Questions?
+                        </span>*/}
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight text-zinc-950">
+                            Frequently Asked Questions
+                        </h2>
+                    </div>
 
-                    <motion.ul
-                        variants={listVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="border-t border-zinc-200"
-                    >
+                    <ul className="border-t border-zinc-200">
                         {faqItems.map((item, index) => (
-                            <motion.li
-                                layout
-                                variants={itemVariants}
+                            <li
                                 key={index}
                                 className="flex flex-col border-b border-zinc-200"
                             >
@@ -159,29 +130,28 @@ const FAQ = () => {
                                                 : index,
                                         )
                                     }
-                                    className="w-full text-left py-3 flex items-center justify-between group transition-all"
+                                    className="w-full text-left py-4 flex items-center justify-between group transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded-lg"
                                 >
-                                    <span className="text-lg md:text-xl font-medium tracking-tight pr-8">
+                                    <span className="text-base sm:text-lg font-medium tracking-tight pr-6 text-zinc-900 group-hover:text-zinc-600 transition-colors">
                                         {item.question}
                                     </span>
 
-                                    <motion.div
-                                        animate={{
-                                            rotate:
-                                                activeIndex === index ? 135 : 0,
-                                        }}
-                                        className={`text-2xl transition-colors ${activeIndex === index ? "text-black" : "text-zinc-300 group-hover:text-zinc-500"}`}
+                                    <div
+                                        className={`shrink-0 transition-transform duration-200 ${activeIndex === index
+                                            ? "rotate-45 text-zinc-950"
+                                            : "text-zinc-400 group-hover:text-zinc-600"
+                                            }`}
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
+                                            width="20"
+                                            height="20"
                                             fill="currentColor"
                                             viewBox="0 0 256 256"
                                         >
                                             <path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
                                         </svg>
-                                    </motion.div>
+                                    </div>
                                 </button>
 
                                 <AnimatePresence initial={false}>
@@ -195,19 +165,20 @@ const FAQ = () => {
                                             }}
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{
-                                                duration: 0.35,
-                                                ease: [0.04, 0.62, 0.23, 0.98],
+                                                duration: 0.25,
+                                                ease: "easeOut",
                                             }}
+                                            className="overflow-hidden"
                                         >
-                                            <div className="pb-4 pr-12 text-zinc-500 text-base leading-relaxed">
+                                            <div className="pb-5 pr-8 text-zinc-600 text-sm sm:text-base leading-relaxed">
                                                 {item.answer}
                                             </div>
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
-                            </motion.li>
+                            </li>
                         ))}
-                    </motion.ul>
+                    </ul>
                 </div>
             </div>
         </section>

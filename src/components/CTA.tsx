@@ -3,54 +3,55 @@ import CtaImg from "../assets/cta-img.jpg";
 
 const CTA = () => {
     return (
-        <section className="w-full py-32 md:py-36 px-6 bg-white overflow-hidden">
-            <div className="max-w-5xl mx-auto flex flex-col items-center gap-12 text-center">
-                <div className="overflow-hidden">
-                    <motion.h2
-                        initial={{ y: "100%" }}
-                        whileInView={{ y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] tracking-tighter"
-                    >
-                        Work seamlessly with a creative team built to match
-                        <span className="text-zinc-400 block md:inline md:ml-3">
-                            your pace and exceed your expectations.
-                        </span>
-                    </motion.h2>
-                </div>
-
-                <motion.button
-                    initial={{ opacity: 0, y: 20 }}
+        <section id="contact" className="w-full py-20 md:py-28 px-6 bg-white overflow-hidden">
+            <div className="max-w-4xl mx-auto flex flex-col items-center gap-10 text-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="group relative flex items-center gap-4 bg-[#2c2c2c] text-white rounded-full p-2 pr-8 transition-all duration-300 hover:bg-black/75 shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]"
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                    <span className="text-xs uppercase tracking-[0.1em] text-zinc-400 font-bold block mb-3">
+                        Start Your Project
+                    </span>
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.12] tracking-tight text-zinc-950">
+                        Work seamlessly with a creative team built to match
+                        <span className="text-zinc-400 block sm:inline sm:ml-3 font-normal">
+                            your pace and exceed your expectations.
+                        </span>
+                    </h2>
+                </motion.div>
+
+                <motion.a
+                    href="mailto:manav.gusain@gmail.com?subject=Project%20Inquiry%20-%20Off%20Brand"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.15, duration: 0.4 }}
+                    className="group relative flex items-center gap-4 bg-zinc-950 text-white rounded-full p-2.5 pr-8 transition-all duration-200 hover:bg-zinc-800 shadow-md active:scale-95"
                 >
                     <div className="relative">
                         <img
                             src={CtaImg}
                             alt="Project Lead"
-                            className="h-14 w-14 rounded-full object-cover ring-2 ring-white/30"
+                            className="h-12 w-12 rounded-full object-cover ring-2 ring-white/20"
                         />
-                        <span className="absolute bottom-0 right-0 flex size-3.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
-                            <span className="relative inline-flex size-3.5 rounded-full bg-green-500 border-2 border-[#1a1a1a]"></span>
+                        <span className="absolute bottom-0 right-0 flex size-3">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex size-3 rounded-full bg-emerald-500 border-2 border-zinc-950"></span>
                         </span>
                     </div>
 
                     <div className="flex flex-col text-left">
                         <div className="flex items-center gap-2">
-                            <span className="font-bold text-lg">
+                            <span className="font-semibold text-base sm:text-lg">
                                 Book a call
                             </span>
-
-                            <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+                            <div className="transition-transform duration-200 group-hover:translate-x-0.5">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
+                                    width="14"
+                                    height="14"
                                     fill="currentColor"
                                     viewBox="0 0 256 256"
                                 >
@@ -58,11 +59,11 @@ const CTA = () => {
                                 </svg>
                             </div>
                         </div>
-                        <span className="text-sm text-white/50 font-medium">
+                        <span className="text-xs text-zinc-400 font-medium">
                             Let's talk about your project
                         </span>
                     </div>
-                </motion.button>
+                </motion.a>
             </div>
         </section>
     );

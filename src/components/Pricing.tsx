@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import authorImg from "../assets/mnv.jpg";
+import { DitherBackground } from "./DitherBackground";
 
 interface PlanDetails {
     title: string;
     price: string;
     unit: string;
+    badge: string;
     description: string;
     features: string[];
 }
@@ -19,26 +21,28 @@ const plans: Plans = {
         title: "Design Retainer",
         price: "$1,000",
         unit: "/mo",
+        badge: "Most Popular",
         description:
             "Perfect for venture-backed startups needing a dedicated design arm.",
         features: [
-            "Brand, Experience, or Interface design support",
-            "On-going monthly retainer to fit your needs",
+            "Brand, experience, or interface design support",
+            "Flexible monthly engagement with async cadence",
             "Clear timeline and milestone deliverables",
-            "Expert project manager & weekly async updates",
+            "Dedicated senior designer & weekly updates",
         ],
     },
     custom: {
         title: "Custom Project",
         price: "$5,000",
-        unit: "/mo",
+        unit: "/project",
+        badge: "Fixed Scope",
         description:
             "One-off specialized projects with a defined scope and timeline.",
         features: [
-            "Work with a world-class design/engineering team",
-            "Ship iOS & Mac apps in weeks",
-            "Milestone-based delivery and clear plan",
-            "Brand and storytelling strategy",
+            "End-to-end design & design system sprints",
+            "Production-ready web & mobile app interfaces",
+            "Milestone-based delivery with clear execution",
+            "High-impact pitch decks & brand strategy",
         ],
     },
 };
@@ -46,40 +50,54 @@ const plans: Plans = {
 const Pricing = () => {
     const [plan, setPlan] = useState<keyof typeof plans>("monthly");
 
+    const handleScrollToContact = () => {
+        const element = document.querySelector("#contact");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
+    const currentPlan = plans[plan];
+
     return (
-        <section className="w-full max-w-[1400px] mx-auto px-6 py-16 md:py-24">
-            <div className="overflow-hidden text-center mb-8 md:mb-[-1vw]">
-                <motion.h1
-                    initial={{ y: "40%" }}
-                    whileInView={{ y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                    className="text-[16vw] md:text-[28vw] font-semibold leading-[0.9] text-zinc-800 select-none [mask-image:linear-gradient(to_bottom,black_20%,transparent_100%)]"
-                >
-                    Pricing
-                </motion.h1>
+        <section id="pricing" className="w-full max-w-[1400px] mx-auto px-6 py-20 md:py-28">
+            <div className="text-center mb-12 sm:mb-16">
+                <span className="text-xs uppercase tracking-[0.2em] text-zinc-400 font-bold block mb-2">
+                    Pricing & Plans
+                </span>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950">
+                    Transparent Investment
+                </h2>
             </div>
 
-            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch justify-between gap-12 lg:gap-16 relative z-10">
-                <div className="w-full max-w-xl mx-auto lg:mx-0 flex flex-1 items-stretch flex-col justify-between gap-10 lg:gap-12">
+            <div className="flex flex-col-reverse lg:flex-row items-center lg:items-stretch justify-between gap-12 lg:gap-16">
+                <motion.div
+                    layout
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full max-w-xl mx-auto lg:mx-0 flex flex-1 items-stretch flex-col justify-between gap-10 lg:gap-12"
+                >
                     <div className="space-y-4">
-                        <span className="text-sm uppercase tracking-[0.2em] text-black/40 font-bold block">
+                        <span className="text-xs uppercase tracking-[0.1em] text-zinc-400 font-bold block">
                             The ROI of Quality
                         </span>
-                        <h2 className="text-4xl md:text-5xl max-w-sm font-semibold leading-[1.1] tracking-tight">
+                        <h3 className="text-3xl sm:text-4xl md:text-5xl max-w-md font-semibold leading-[1.15] tracking-tight text-zinc-950">
                             Hire the best, and get what you paid for.
-                        </h2>
+                        </h3>
                     </div>
 
-                    <div className="flex flex-col justify-end">
-                        <blockquote className="font-serif text-xl md:text-2xl lg:text-3xl text-black/80 italic leading-relaxed border-l-4 border-black/10 pl-6 lg:pl-8 mb-8 lg:mb-10">
+                    <motion.div
+                        layout
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="flex flex-col justify-end"
+                    >
+                        <blockquote className="font-serif text-xl sm:text-2xl text-zinc-700 italic leading-relaxed border-l-2 border-zinc-900/20 pl-6 mb-6">
                             "For us it has been important to find a creative
-                            partner like Off Brand — a team we can trust to
+                            partner like Off Brand - a team we can trust to
                             deliver quality work on time."
                         </blockquote>
 
                         <div className="flex items-center gap-4">
-                            <div className="w-14 h-14 rounded-full overflow-hidden ring-1 ring-black/10">
+                            <div className="w-12 h-12 rounded-full overflow-hidden ring-1 ring-zinc-200">
                                 <img
                                     src={authorImg}
                                     alt="Manav Gusain"
@@ -87,27 +105,27 @@ const Pricing = () => {
                                 />
                             </div>
                             <div className="flex flex-col">
-                                <span className="font-bold text-lg text-black">
+                                <span className="font-semibold text-base text-zinc-950">
                                     Manav Gusain
                                 </span>
-                                <span className="text-sm text-black/50 font-medium">
+                                <span className="text-xs text-zinc-500 font-medium">
                                     Author, The 67 Types of Wealth
                                 </span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
 
-                <div className="w-full max-w-md mx-auto lg:mx-0 flex flex-col gap-6">
-                    <div className="flex bg-zinc-100 p-1 rounded-2xl relative">
+                <div className="w-full max-w-md mx-auto lg:mx-0 flex flex-col gap-5">
+                    <div className="flex bg-zinc-100/90 p-1 rounded-2xl relative border border-zinc-200/60">
                         {(Object.keys(plans) as Array<keyof typeof plans>).map(
                             (option) => (
                                 <button
                                     key={option}
                                     onClick={() => setPlan(option)}
-                                    className={`relative flex-1 py-3 text-sm font-bold transition-colors duration-300 z-10 ${plan === option
-                                        ? "text-black"
-                                        : "text-zinc-400 hover:text-zinc-600"
+                                    className={`relative flex-1 py-2.5 text-xs sm:text-sm font-semibold transition-colors duration-200 z-10 ${plan === option
+                                        ? "text-zinc-950"
+                                        : "text-zinc-500 hover:text-zinc-800"
                                         }`}
                                 >
                                     {plan === option && (
@@ -116,8 +134,8 @@ const Pricing = () => {
                                             className="absolute inset-0 bg-white shadow-sm rounded-xl"
                                             transition={{
                                                 type: "spring",
-                                                bounce: 0.2,
-                                                duration: 0.6,
+                                                stiffness: 400,
+                                                damping: 35,
                                             }}
                                         />
                                     )}
@@ -129,93 +147,87 @@ const Pricing = () => {
                         )}
                     </div>
 
-                    <div className="bg-[#2c2c2c] text-white rounded-[2rem] p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/5 relative overflow-hidden w-full">
-                        <div className="absolute -top-24 -right-24 w-48 h-48 bg-white/5 blur-[80px] rounded-full" />
+                    <div className="bg-zinc-950 text-white rounded-[1rem] p-7 sm:p-9 shadow-xl border border-white/10 relative overflow-hidden w-full">
+                        <DitherBackground variant={plan as "monthly" | "custom"} />
+                        <div className="w-full relative z-10">
+                            <div className="mb-8">
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-2">
+                                        <span className="relative flex size-2">
+                                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                                            <span className="relative inline-flex size-2 rounded-full bg-emerald-400"></span>
+                                        </span>
+                                        <h4 className="text-xs uppercase tracking-[0.1em] text-zinc-400 font-bold">
+                                            {currentPlan.title}
+                                        </h4>
+                                    </div>
+                                    <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 bg-white/10 px-2 py-0.5 rounded-full">
+                                        {currentPlan.badge}
+                                    </span>
+                                </div>
 
-                        <AnimatePresence mode="wait">
-                            {Object.entries(plans).map(([planKey, currentPlan]) => (
-                                plan === planKey && (
-                                    <motion.div
-                                        key={planKey}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -20 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="relative z-10"
+                                <div className="flex items-baseline gap-1 mt-3">
+                                    <span className="text-4xl sm:text-5xl font-bold tracking-tight text-white">
+                                        {currentPlan.price}
+                                    </span>
+                                    <span className="text-lg text-zinc-400 font-medium">
+                                        {currentPlan.unit}
+                                    </span>
+                                </div>
+                                <p className="text-xs text-zinc-400 mt-2">
+                                    {currentPlan.description}
+                                </p>
+                            </div>
+
+                            <ul className="space-y-4 mb-9 border-t border-white/10 pt-6">
+                                {currentPlan.features.map((item, index) => (
+                                    <li
+                                        key={index}
+                                        className="flex items-start gap-3 text-sm text-zinc-300"
                                     >
-                                        <div className="mb-10">
-                                            <div className="flex items-center gap-2 mb-3">
-                                                <span className="relative flex size-2">
-                                                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
-                                                    <span className="relative inline-flex size-2 rounded-full bg-green-400"></span>
-                                                </span>
-                                                <h3 className="text-xs uppercase tracking-[0.2em] text-white/40 font-bold">
-                                                    {currentPlan.title}
-                                                </h3>
-                                            </div>
-
-                                            <div className="flex items-baseline gap-1">
-                                                <span className="text-4xl md:text-5xl font-bold tracking-tight">
-                                                    {currentPlan.price}
-                                                </span>
-                                                <span className="text-xl text-white/30 font-medium">
-                                                    {currentPlan.unit}
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <ul className="space-y-5 mb-12">
-                                            {currentPlan.features.map((item, index) => (
-                                                <li
-                                                    key={index}
-                                                    className="flex items-start gap-4 text-[15px] text-white/70"
-                                                >
-                                                    <div className="mt-1 bg-white/20 rounded-full p-1 shrink-0">
-                                                        <svg
-                                                            className="w-3 h-3 text-white"
-                                                            fill="none"
-                                                            viewBox="0 0 24 24"
-                                                            stroke="currentColor"
-                                                            strokeWidth={3}
-                                                        >
-                                                            <path
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                d="M5 13l4 4L19 7"
-                                                            />
-                                                        </svg>
-                                                    </div>
-                                                    <span>{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-
-                                        <div className="space-y-4">
-                                            <motion.button
-                                                whileTap={{ scale: 0.98 }}
-                                                className="group relative flex items-center justify-center gap-2 w-full bg-white text-black font-bold py-5 rounded-full transition-all duration-300 hover:bg-zinc-100 shadow-[0px_0px_2px_1px_rgba(1,1,1,0.1)_inset]"
+                                        <div className="mt-0.5 bg-white/15 rounded-full p-1 shrink-0">
+                                            <svg
+                                                className="w-2.5 h-2.5 text-white"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                strokeWidth={3}
                                             >
-                                                <span>Get Started Now</span>
-                                                <div className="transition-transform duration-300 group-hover:translate-x-0.5">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="16"
-                                                        height="16"
-                                                        fill="currentColor"
-                                                        viewBox="0 0 256 256"
-                                                    >
-                                                        <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
-                                                    </svg>
-                                                </div>
-                                            </motion.button>
-                                            <p className="text-center text-[11px] text-white/50 uppercase tracking-widest font-bold">
-                                                Limited spots available
-                                            </p>
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M5 13l4 4L19 7"
+                                                />
+                                            </svg>
                                         </div>
-                                    </motion.div>
-                                )
-                            ))}
-                        </AnimatePresence>
+                                        <span>{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="space-y-3">
+                                <button
+                                    onClick={handleScrollToContact}
+                                    className="group relative flex items-center justify-center gap-2 w-full bg-white text-zinc-950 font-bold py-4 rounded-full transition-all duration-200 hover:bg-zinc-100 shadow-sm active:scale-95 text-sm"
+                                >
+                                    <span>Get Started Now</span>
+                                    <div className="transition-transform duration-200 group-hover:translate-x-0.5">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="14"
+                                            height="14"
+                                            fill="currentColor"
+                                            viewBox="0 0 256 256"
+                                        >
+                                            <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <p className="text-center text-[10px] text-zinc-400 uppercase tracking-wide font-semibold">
+                                    Limited spots available
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

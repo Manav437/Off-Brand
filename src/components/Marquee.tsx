@@ -22,28 +22,51 @@ const marqueeItems = [
     { name: "Tangentia", logo: tangentia },
 ];
 
+const marqueeList = [...marqueeItems, ...marqueeItems];
+
 const Marquee = () => {
     return (
-        <section className="w-full max-w-screen-2xl mx-auto flex flex-col md:flex-row items-start md:items-center overflow-hidden py-8 md:py-10 border-y border-gray-100 bg-white">
-            <div className="w-full md:w-[25%] lg:w-[15%] shrink-0 px-6 mb-6 md:mb-0 z-20 bg-white">
-                <span className="text-xs lg:text-sm font-medium text-black/50 uppercase tracking-widest leading-tight block">
-                    Trusted by <br className="hidden md:block" /> exciting
-                    brands
+        <section className="w-full max-w-screen-2xl mx-auto flex flex-col md:flex-row items-start md:items-center overflow-hidden py-8 md:py-10 border-y border-zinc-100 bg-white">
+            <div className="w-full md:w-[24%] lg:w-[18%] shrink-0 px-6 sm:px-8 mb-4 md:mb-0 z-20 bg-white">
+                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide leading-relaxed block">
+                    Trusted by <br className="hidden md:block" /> exciting brands
                 </span>
             </div>
 
-            <div className="relative w-full md:w-[75%] lg:w-[85%] overflow-hidden">
-                <div className="absolute inset-y-0 left-0 w-16 md:w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute inset-y-0 right-0 w-16 md:w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="group relative w-full md:w-[76%] lg:w-[82%] overflow-hidden flex">
+                <div className="absolute inset-y-0 left-0 w-16 md:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                <div className="absolute inset-y-0 right-0 w-16 md:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-                <div className="flex w-max animate-marquee gap-12 md:gap-16 items-center py-2 will-change-transform">
-                    {[...marqueeItems, ...marqueeItems].map((item, idx) => (
-                        <img
-                            key={idx}
-                            src={item.logo}
-                            alt={item.name}
-                            className="h-5 md:h-6 w-auto object-contain grayscale opacity-40 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                        />
+                <div className="flex shrink-0 animate-marquee group-hover:[animation-play-state:paused] items-center gap-12 md:gap-16 pr-12 md:pr-16 py-2 will-change-transform">
+                    {marqueeList.map((item, idx) => (
+                        <div
+                            key={`track1-${idx}`}
+                            className="flex items-center justify-center shrink-0 h-8"
+                        >
+                            <img
+                                src={item.logo}
+                                alt={item.name}
+                                className="max-h-5 sm:max-h-6 max-w-[120px] w-auto object-contain grayscale opacity-45 hover:opacity-100 hover:grayscale-0 transition-all duration-200 cursor-pointer"
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                <div
+                    aria-hidden="true"
+                    className="flex shrink-0 animate-marquee group-hover:[animation-play-state:paused] items-center gap-12 md:gap-16 pr-12 md:pr-16 py-2 will-change-transform"
+                >
+                    {marqueeList.map((item, idx) => (
+                        <div
+                            key={`track2-${idx}`}
+                            className="flex items-center justify-center shrink-0 h-8"
+                        >
+                            <img
+                                src={item.logo}
+                                alt={item.name}
+                                className="max-h-5 sm:max-h-6 max-w-[120px] w-auto object-contain grayscale opacity-45 hover:opacity-100 hover:grayscale-0 transition-all duration-200 cursor-pointer"
+                            />
+                        </div>
                     ))}
                 </div>
             </div>

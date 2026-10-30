@@ -5,12 +5,12 @@ export default {
         extend: {
             keyframes: {
                 marquee: {
-                    "0%": { transform: "translateX(0)" },
-                    "100%": { transform: "translateX(-50%)" },
+                    "0%": { transform: "translateX(0%)" },
+                    "100%": { transform: "translateX(-100%)" },
                 },
             },
             animation: {
-                marquee: "marquee 60s linear infinite",
+                marquee: "marquee 45s linear infinite",
             },
         },
         fontFamily: {

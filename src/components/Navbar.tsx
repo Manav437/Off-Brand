@@ -1,6 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
+
+const menuItems = [
+    { name: "About", href: "#about" },
+    { name: "Services", href: "#about" },
+    { name: "Case Studies", href: "#work" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "FAQ", href: "#faq" },
+];
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -23,68 +30,84 @@ const Navbar = () => {
             document.removeEventListener("mousedown", handleClickOutside);
     }, [open]);
 
+    const handleLinkClick = (href: string) => {
+        setOpen(false);
+        const element = document.querySelector(href);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <motion.nav
             ref={navRef}
-            initial={{ y: -100, x: "-50%", opacity: 0 }}
+            initial={{ y: -20, x: "-50%", opacity: 0 }}
             animate={{ y: 0, x: "-50%", opacity: 1 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="
-                fixed top-8 left-1/2 z-[100]
-                flex w-[95%] max-w-3xl items-center justify-between
-                border border-white/20 rounded-full p-2 px-2
-                bg-white/40 backdrop-blur-md shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]
+                fixed top-6 left-1/2 z-[100]
+                flex w-[92%] max-w-3xl items-center justify-between
+                border border-black/5 rounded-full p-2 px-3
+                bg-white/75 backdrop-blur-md shadow-[0_8px_30px_rgb(0,0,0,0.06)]
                 ring-1 ring-black/5
             "
         >
             <div className="flex items-center">
-                <h1 className="text-xl font-bold tracking-tighter cursor-pointer pl-3">
-                    O / B
-                </h1>
+                <a
+                    href="#"
+                    className="text-xl font-bold tracking-tighter cursor-pointer pl-3 text-zinc-950 hover:opacity-80 transition-opacity"
+                >
+                    O{" "}/{" "}B
+                </a>
             </div>
 
             <div className="flex items-center gap-2">
                 <MenuIcon toggle={toggleDropdown} isOpen={open} />
-                <div className="h-6 w-[1px] bg-black/10 mx-1 md:block hidden" />
+                <div className="h-6 w-[1px] bg-zinc-200 mx-1 md:block hidden" />
 
-                <motion.button
-                    whileTap={{ scale: 0.98 }}
+                <button
+                    onClick={() => handleLinkClick("#contact")}
                     className="
-                        group relative flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-bold
-                        bg-[#2c2c2c] text-white transition-all duration-300 hover:bg-black/75
-                        shadow-[0px_0px_2px_1px_rgba(255,255,255,0.2)_inset]
+                        group relative flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold
+                        bg-zinc-950 text-white transition-all duration-200 hover:bg-zinc-800
+                        shadow-sm active:scale-95
                     "
                 >
                     <span>Book a call</span>
                     <ArrowIcon />
-                </motion.button>
+                </button>
             </div>
 
             <AnimatePresence>
                 {open && (
                     <motion.div
-                        initial={{ opacity: 0, y: 2, scale: 0.99 }}
+                        initial={{ opacity: 0, y: 4, scale: 0.99 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 2, scale: 0.99 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        exit={{ opacity: 0, y: 4, scale: 0.99 }}
+                        transition={{ duration: 0.18, ease: "easeOut" }}
                         className="
-                            absolute top-full left-0 mt-4 w-full
-                            bg-white border border-zinc-200
-                            rounded-[1.5rem] p-3 shadow-[0_20px_40px_rgba(0,0,0,0.1)]
+                            absolute top-full left-0 mt-3 w-full
+                            bg-white backdrop-blur-xl border border-zinc-200/80
+                            rounded-[1.5rem] p-3 shadow-xl
                             ring-1 ring-black/5 overflow-hidden
                         "
                     >
-                        <ul className="flex flex-col gap-1 text-sm font-bold text-zinc-500">
-                            {["About", "Services", "Case Studies"].map(
-                                (item) => (
-                                    <motion.li
-                                        key={item}
-                                        className="cursor-pointer rounded-3xl px-4 py-3 transition-all hover:bg-zinc-100 hover:text-black text-zinc-500"
+                        <ul className="flex flex-col gap-1 text-sm font-semibold text-zinc-600">
+                            {menuItems.map((item) => (
+                                <li key={item.name}>
+                                    <a
+                                        href={item.href}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            handleLinkClick(item.href);
+                                        }}
+                                        className="group/item flex items-center justify-between cursor-pointer rounded-2xl px-4 py-3 transition-colors hover:bg-zinc-200/50 hover:text-zinc-950"
                                     >
-                                        {item}
-                                    </motion.li>
-                                ),
-                            )}
+                                        <span>{item.name}</span>
+                                        <ArrowIcon className="opacity-0 -translate-x-1 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all text-zinc-400" />
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </motion.div>
                 )}
@@ -102,17 +125,17 @@ const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
     <button
         onClick={toggle}
         type="button"
-        aria-label="Toggle menu"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
         aria-expanded={isOpen}
-        className="p-2 hover:bg-black/5 rounded-full transition-colors"
+        className="p-2 hover:bg-black/5 rounded-full transition-colors text-zinc-900"
     >
         <svg
-            width="20"
-            height="20"
+            width="18"
+            height="18"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2.2"
             strokeLinecap="round"
             className="overflow-visible"
         >
@@ -121,37 +144,35 @@ const MenuIcon = ({ toggle, isOpen }: MenuIconProps) => (
                 y1="12"
                 x2="20"
                 y2="12"
-                className={`transition-all duration-300 origin-center ${isOpen ? "rotate-45" : "-translate-y-[6px]"
+                className={`transition-all duration-200 origin-center ${isOpen ? "rotate-45" : "-translate-y-[6px]"
                     }`}
             />
-
             <line
                 x1="4"
                 y1="12"
                 x2="20"
                 y2="12"
-                className={`transition-all duration-300 ${isOpen ? "opacity-0" : ""
+                className={`transition-all duration-200 ${isOpen ? "opacity-0" : ""
                     }`}
             />
-
             <line
                 x1="4"
                 y1="12"
                 x2="20"
                 y2="12"
-                className={`transition-all duration-300 origin-center ${isOpen ? "-rotate-45" : "translate-y-[6px]"
+                className={`transition-all duration-200 origin-center ${isOpen ? "-rotate-45" : "translate-y-[6px]"
                     }`}
             />
         </svg>
     </button>
 );
 
-const ArrowIcon = () => (
-    <div className="transition-transform duration-300 group-hover:translate-x-0.5">
+const ArrowIcon = ({ className }: { className?: string }) => (
+    <div className={`transition-transform duration-200 group-hover:translate-x-0.5 ${className ?? ""}`}>
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
+            width="13"
+            height="13"
             fill="currentColor"
             viewBox="0 0 256 256"
         >
